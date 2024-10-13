@@ -1,0 +1,28 @@
+version: "3"
+services:
+  fe:
+    image: selectdb/doris.fe-ubuntu:2.1.6
+    hostname: fe
+    environment:
+      - FE_SERVERS=fe1:127.0.0.1:9010
+      - FE_ID=1
+    volumes:
+      - /data/fe/doris-meta/:/opt/apache-doris/fe/doris-meta/
+      - /data/fe/log/:/opt/apache-doris/fe/log/
+    network_mode: host
+    ports:
+      - "9030:9030"
+  be:
+    image: selectdb/doris.be-ubuntu:2.1.6
+    hostname: be
+    environment:
+      - FE_SERVERS=fe1:127.0.0.1:9010
+      - BE_ADDR=127.0.0.1:9050
+    volumes:
+      - /data/be/storage/:/opt/apache-doris/be/storage/
+      - /data/be/script/:/docker-entrypoint-initdb.d/
+    depends_on:
+      - fe
+    network_mode: host
+    ports:
+      - "9050:9050"
