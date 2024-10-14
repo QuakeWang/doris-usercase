@@ -33,10 +33,10 @@ public class OracleToDoris {
         Configuration sourceConf = Configuration.fromMap(sourceConfig);
 
         HashMap<String, String> sinkConfig = new HashMap<>();
-        sinkConfig.put(DorisConfigOptions.FENODES.key(), "168.43.0.1:6280");
+        sinkConfig.put(DorisConfigOptions.FENODES.key(), "127.0.0.1:8030");
         sinkConfig.put(DorisConfigOptions.USERNAME.key(), "root");
-        sinkConfig.put(DorisConfigOptions.PASSWORD.key(), "Doris@123");
-        sinkConfig.put(DorisConfigOptions.JDBC_URL.key(), "jdbc:mysql://168.43.0.1:7327");
+        sinkConfig.put(DorisConfigOptions.PASSWORD.key(), "123456");
+        sinkConfig.put(DorisConfigOptions.JDBC_URL.key(), "jdbc:mysql://127.0.0.1:9030");
         sinkConfig.put(DorisConfigOptions.SINK_LABEL_PREFIX.key(), UUID.randomUUID().toString());
         Configuration sinkConf = Configuration.fromMap(sinkConfig);
 
